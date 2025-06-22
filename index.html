@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Assignments - Account</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 space-y-6">
+
+  <!-- Heading and Description -->
+  <div class="text-center">
+    <h1 class="text-4xl font-extrabold text-blue-700 mb-2">Smart Assignments</h1>
+    <p class="text-indigo-500 text-lg font-medium">
+      📖 The value of education isn’t limited to just grades!<br>
+      Login to Smart Assignments today and start earning through your assignments.
+    </p>
+  </div>
+
+  <!-- Form Box -->
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-6">
+    <!-- Subheading -->
+    <p class="text-center text-sm text-gray-500 mb-4">Join <span id="userCount">1300+</span> active earners today!</p>
+
+    <!-- Form Toggle Links -->
+    <div class="text-center mb-4">
+      <button onclick="showForm('register')" class="text-blue-600 font-semibold">Register Account</button> |
+      <button onclick="showForm('login')" class="text-gray-600">Login Account</button>
+    </div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Assignments - Account</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 space-y-6">
+
+  <!-- Heading and Description -->
+  <div class="text-center">
+    <h1 class="text-4xl font-extrabold text-blue-700 mb-2">Smart Assignments</h1>
+    <p class="text-indigo-500 text-lg font-medium">
+      📖 The value of education isn’t limited to just grades!<br>
+      Login to Smart Assignments today and start earning through your assignments.
+    </p>
+  </div>
+
+  <!-- Form Box -->
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-6">
+    <!-- Subheading -->
+    <p class="text-center text-sm text-gray-500 mb-4">Join <span id="userCount">1300+</span> active earners today!</p>
+
+    <!-- Form Toggle Links -->
+    <div class="text-center mb-4">
+      <button onclick="showForm('register')" class="text-blue-600 font-semibold">Register Account</button> |
+      <button onclick="showForm('login')" class="text-gray-600">Login Account</button>
+    </div>
+
+    <!-- Register Form -->
+    <form id="registerForm" class="space-y-3">
+      <input type="email" id="regEmail" placeholder="Gmail" class="w-full p-2 border rounded" required>
+      <input type="text" id="regUsername" placeholder="Username" class="w-full p-2 border rounded" required>
+      <input type="password" id="regPassword" placeholder="Password" class="w-full p-2 border rounded" required>
+      <input type="password" id="regConfirm" placeholder="Confirm Password" class="w-full p-2 border rounded" required>
+      <p id="regError" class="text-red-500 text-sm hidden">Passwords do not match!</p>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Create Account</button>
+    </form>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-3 hidden">
+      <input type="email" id="logEmail" placeholder="Gmail" class="w-full p-2 border rounded" required>
+      <input type="password" id="logPassword" placeholder="Password" class="w-full p-2 border rounded" required>
+      <p id="loginError" class="text-red-500 text-sm hidden">Invalid Gmail or Password!</p>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Login Now</button>
+    </form>
+
+    <!-- Welcome Box -->
+    <div id="welcomeBox" class="hidden text-center mt-4">
+      <p class="text-green-600 font-bold text-lg">🎉 Login Successful!</p>
+      <p>Welcome, <span id="loggedUsername"></span> 👋</p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function showForm(type) {
+      document.getElementById('registerForm').classList.toggle('hidden', type !== 'register');
+      document.getElementById('loginForm').classList.toggle('hidden', type !== 'login');
+      document.getElementById('welcomeBox').classList.add('hidden');
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value;
+      const username = document.getElementById('regUsername').value;
+      const pass = document.getElementById('regPassword').value;
+      const confirm = document.getElementById('regConfirm').value;
+      const error = document.getElementById('regError');
+
+      if (pass !== confirm) {
+        error.classList.remove('hidden');
+        return;
+      }
+
+      error.classList.add('hidden');
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', pass);
+      localStorage.setItem('userName', username);
+
+      alert("Account Created Successfully! Redirecting to Login...");
+      showForm('login');
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('logEmail').value;
+      const pass = document.getElementById('logPassword').value;
+      const error = document.getElementById('loginError');
+
+      const storedEmail = localStorage.getItem('userEmail');
+      const storedPass = localStorage.getItem('userPassword');
+      const storedName = localStorage.getItem('userName');
+
+      if (email === storedEmail && pass === storedPass) {
+        error.classList.add('hidden');
+        document.getElementById('loggedUsername').innerText = storedName;
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('welcomeBox').classList.remove('hidden');
+      } else {
+        error.classList.remove('hidden');
+      }
+    });
+
+    window.onload = () => showForm('register');
+  </script>
+</body>
+</html>￼Enter    <!-- Register Form -->
+    <form id="registerForm" class="space-y-3">
+      <input type="email" id="regEmail" placeholder="Gmail" class="w-full p-2 border rounded" required>
+      <input type="text" id="regUsername" placeholder="Username" class="w-full p-2 border rounded" required>
+      <input type="password" id="regPassword" placeholder="Password" class="w-full p-2 border rounded" required>
+      <input type="password" id="regConfirm" placeholder="Confirm Password" class="w-full p-2 border rounded" required>
+      <p id="regError" class="text-red-500 text-sm hidden">Passwords do not match!</p>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Create Account</button>
+    </form>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-3 hidden">
+      <input type="email" id="logEmail" placeholder="Gmail" class="w-full p-2 border rounded" required>
+      <input type="password" id="logPassword" placeholder="Password" class="w-full p-2 border rounded" required>
+      <p id="loginError" class="text-red-500 text-sm hidden">Invalid Gmail or Password!</p>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Login Now</button>
+    </form>
+
+    <!-- Welcome Box -->
+    <div id="welcomeBox" class="hidden text-center mt-4">
+      <p class="text-green-600 font-bold text-lg">🎉 Login Successful!</p>
+      <p>Welcome, <span id="loggedUsername"></span> 👋</p>
+    </div>
+  </div>
+
+  <!-- Script -->
+ipt>
+    function showForm(type) {
+      document.getElementById('registerForm').classList.toggle('hidden', type !== 'register');
+      document.getElementById('loginForm').classList.toggle('hidden', type !== 'login');
+      document.getElementById('welcomeBox').classList.add('hidden');
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value;
+      const username = document.getElementById('regUsername').value;
+      const pass = document.getElementById('regPassword').value;
+      const confirm = document.getElementById('regConfirm').value;
+      const error = document.getElementById('regError');
+
+      if (pass !== confirm) {
+        error.classList.remove('hidden');
+        return;
+      }
+
+      error.classList.add('hidden');
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', pass);
+      localStorage.setItem('userName', username);
+
+      alert("Account Created Successfully! Redirecting to Login...");
